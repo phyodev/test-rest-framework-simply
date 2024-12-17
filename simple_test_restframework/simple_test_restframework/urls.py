@@ -22,11 +22,13 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView,
 )
-from base_app.views import UserViewSet, GroupViewSet
+from base_app.views import UserViewSet, GroupViewSet, MovieViewSet, ResourceViewSet
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
+router.register(r'movies', MovieViewSet)
+router.register(r'resources', ResourceViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
@@ -34,5 +36,5 @@ urlpatterns = [
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('verify/', TokenVerifyView.as_view(), name='token_verify'),
-    # path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
+    path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
 ]
